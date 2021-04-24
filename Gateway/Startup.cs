@@ -33,8 +33,8 @@ namespace Gateway
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
             var AuthenticationScheme = Configuration.GetValue<string>("AuthenticationScheme");
-            var Authority = "GloboTicketGatewayAuthenticationScheme";
-            var Audience = "GloboTicketGatewayAuthenticationScheme";
+            var Authority = Configuration.GetValue<string>("Authority");
+            var Audience = Configuration.GetValue<string>("Audience");
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(AuthenticationScheme, options =>
