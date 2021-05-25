@@ -25,7 +25,6 @@ namespace Gateway.DelegatingHandlers
         {
             var item = await _clientAccessTokenCache
                 .GetAsync("proeprestaurantgatewaytodownstreamtokenexchangeclient_api");
-            var asd = DateTime.Now;
             if (item != null)
             {
                 return item.AccessToken;
@@ -79,7 +78,7 @@ namespace Gateway.DelegatingHandlers
             {
                 { "subject_token_type", "urn:ietf:params:oauth:token-type:access_token"},
                 { "subject_token", incomingToken},
-                { "scope", "openid profile meals.fullaccess orders.read" }
+                { "scope", "openid profile meals.fullaccess orders.read orders.write" }
             });
 
             var tokenResponse = await client.RequestTokenAsync(new TokenRequest()
