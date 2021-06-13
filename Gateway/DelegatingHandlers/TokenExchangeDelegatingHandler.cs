@@ -57,18 +57,18 @@ namespace Gateway.DelegatingHandlers
 
         private async Task<(string, int)> ExchangeToken(string incomingToken)
         {
-            var client = _httpClientFactory.CreateClient();
-
+            var client = _httpClientFactory.CreateClient("client");
+          
             var discoveryDocumentResponse = await client
                 .GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
                 {
-                    Address = "https://localhost:5001",
+                    Address = "https://51.141.4.73/api/v1/identity",
                     Policy =
                     {
                         ValidateIssuerName = false,
                     },
                 });
-           
+
             if (discoveryDocumentResponse.IsError)
             {
                 throw new Exception(discoveryDocumentResponse.Error);
