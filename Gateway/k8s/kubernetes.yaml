@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurant-gateway
+  namespace:  ingress
+  labels:
+    app: restaurant-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restaurant-gateway
+  template:
+    metadata:
+      labels:
+        app: restaurant-gateway
+    spec:
+      containers:
+      - name: restaurant-gateway
+        image: acrproep01.azurecr.io/restaurant-gateway:v1.7
+        ports:
+        - containerPort: 80
